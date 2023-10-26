@@ -31,14 +31,24 @@ const persons = [
         role: 'Коллеги',
     },
 ];
+const isAdmin = (person) => {
+    return 'role' in person;
+};
+const isUser = (person) => {
+    return 'group' in person;
+};
 const logPerson = (person) => {
-    let information;
-    if ('role' in person) {
+    let information = '';
+    if (isAdmin(person)) {
         information = person.role;
     }
-    else {
+    if (isUser(person)) {
         information = person.group;
     }
-    console.log(`${person.name}, ${person.age}, ${information}`);
+    console.log(` - ${person.name}, ${person.age}, ${information}`);
 };
-persons.forEach(logPerson);
+console.log('Admins:');
+persons.filter(isAdmin).forEach(logPerson);
+console.log();
+console.log('Users:');
+persons.filter(isUser).forEach(logPerson);
