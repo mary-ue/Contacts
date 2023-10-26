@@ -45,9 +45,14 @@ const persons: Person[] = [
   },
 ];
 
-const logPerson = (user: Person) => {
-  console.log(`${user.name}, ${user.age}`);
-}
+const logPerson = (person: Person) => {
+  let information: string;
+  if ('role' in person) {
+    information = person.role;
+  } else {
+    information = person.group;
+  }
+  console.log(`${person.name}, ${person.age}, ${information}`);
+};
 
-console.log('Users:');
 persons.forEach(logPerson);
