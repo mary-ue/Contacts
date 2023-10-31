@@ -49,11 +49,8 @@ const logPerson = (person) => {
     }
     console.log(` - ${person.name}, ${person.age}, ${information}`);
 };
-const filterUsers = (persons, criteria) => persons.filter(isUser).filter((user) => {
-    const criteriaKeys = Object.keys(criteria);
-    return criteriaKeys.every((fieldName) => user[fieldName] === criteria[fieldName]);
-});
-console.log('Users of age 28:');
-filterUsers(persons, {
-    age: 28
+const filterPersons = (persons, criteria) => persons.filter(person => Object.entries(criteria).every(([key, value]) => person[key] === value));
+console.log('Users of age 27:');
+filterPersons(persons, {
+    age: 27
 }).forEach(logPerson);
